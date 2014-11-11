@@ -37,7 +37,8 @@ versaoAtual=1.09
 cursorVI(){ sleep 0.25; echo -n "   -"; sleep 0.25; echo -n "> "; }
 
 #Nessa variavel não colocado o endereço eletronico arquivo IntranetVindula.sh
-varHTTP=(http://vindula.s3-sa-east-1.amazonaws.com/vindula-2.0.3/instalador/IntranetVindula.sh)
+#varHTTP=(http://vindula.s3-sa-east-1.amazonaws.com/vindula-2.0.3/instalador/IntranetVindula.sh)
+varHTTP=(https://raw.githubusercontent.com/vindula/vindula2-installer/master/IntranetVindula.sh)
 
 nomeArquivoB=$( echo "$varHTTP" \
                 | sed 's:/:\n|:g' \
@@ -48,9 +49,7 @@ nomeArquivoB=$( echo "$varHTTP" \
 installN=$(dpkg -l | grep curl | wc -l)
 
 if [[ $installN -eq 0 ]]; then
-
     apt-get -y install curl
-
 fi
 
 

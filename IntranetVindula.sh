@@ -7,10 +7,10 @@
 #
 #---------------------------------------------------------------------------
 # Versão 1.09 - 27/04/2014
-#             - Atribuido para Ubuntu 14.04 Server 64bits        
+#             - Atribuido para Ubuntu 14.04 Server 64bits
 #---------------------------------------------------------------------------
 # Versão 1.08a - 21/04/2014
-#             - Adição de opção a base de dados Vindula(Apenas reinstação) 
+#             - Adição de opção a base de dados Vindula(Apenas reinstação)
 #             - Bugfix
 #---------------------------------------------------------------------------
 # Versão 1.07a - 16/04/2014
@@ -25,16 +25,16 @@
 #             - Alteração do diretório do arquivo IntranetVindula.sh
 #             - Adição de opções. Status e Stop da Intranet
 #             - Inclusão do verificador de dependencias instaladas
-#             - Bugfix - Start | Status | Stop 
+#             - Bugfix - Start | Status | Stop
 #---------------------------------------------------------------------------
 # Versão 1.05 - 28/02/2014
-#             - Homolagação 
+#             - Homolagação
 #---------------------------------------------------------------------------
 # Versão 1.05b - 25/02/2014
 #             - Inclusão da função de verificação da intraface de rede
 #             - Bugfix do layout
 #             - Restrição de arquitetura para 12.04 Server 64bits
-#             - Inclusão de mensagens  
+#             - Inclusão de mensagens
 #---------------------------------------------------------------------------
 # Versão 1.04b - 24/02/2014
 #             - Melhorias nas ERs
@@ -47,12 +47,12 @@
 # Versão 1.02a - 19/02/2014
 #             - Acerto na criação dos diretórios
 #             - Adicionado as opções:
-#             --------- Ajuda 
+#             --------- Ajuda
 #             --------- Versão  do Instalador
 #             --------- Instalar / Recuperar instalação
 #---------------------------------------------------------------------------
 # Versão 1.01a - 16/02/2014
-#             - Inclusão de cabaçalho 
+#             - Inclusão de cabaçalho
 #             - Adicionado suporte comandos por linha de comando e resoluçao de permissionamento.
 #---------------------------------------------------------------------------
 # Versão 1.00a - 05/02/2014
@@ -74,7 +74,7 @@ while [[ y -lt 6 ]]; do
     else
         coAle="$corInfo"
     fi
-    
+
 echo -ne "  \e[${coAle}37;1m       $mensaInfo       \e[m\r"
 
 sleep 0.25
@@ -90,7 +90,7 @@ sleep 0.25
 verificaIP(){
 
     interfaceCon="wlan eth"
-        
+
     local semIpValido=0
 
 for conect in $interfaceCon; do
@@ -100,7 +100,7 @@ local ipValido=$(ip addr \
     | grep $conect \
     | awk -F" " '{print $2}'\
     | sed 's/\/.*$//')
-    
+
     if [[ -n $ipValido ]]; then
 
     echo -e " Interface de rede $conect:
@@ -108,7 +108,7 @@ local ipValido=$(ip addr \
  através desse endereço \e[1m$ipValido:8080/vindula\e[m\n"
 
     local semIpValido=5
-    
+
     fi
 
 done
@@ -149,30 +149,30 @@ for validaVer in $requisMin; do
 if [[ $confVers = "($releaV)" ]] && [[ $varPass -eq 1 ]]; then
 
     varPassB=$releaV
-   
+
 else
 
     if [[ $varPass -eq 1 ]]; then
 
         if [[ -z $releaV ]] && [[ -z $varPassB ]]; then
-            
+
             releaV=12.04
             varPass=0
             verificador
             break
-    
+
         elif [[ $releaV = "12.04" ]] && [[ -z $varPassB ]]; then
-            
+
             releaV="14.04"
             varPass=0
             verificador
             break
-        
+
         else
 
             varPassB="X"
 
-        fi    
+        fi
     fi
 
 fi
@@ -188,27 +188,27 @@ fi
             if [[ -z $confVers ]] && [[ $requiDiver -eq 0 ]]; then
 
                 if [[ $contador -eq 1 ]]; then
-               
+
                     UbuntuDife=1
 
-                else    
+                else
 
                     UbuntuServer=1
 
-                fi  
+                fi
 
-            ((requiDiver++))    
+            ((requiDiver++))
 
             if [[  varPassB = "X" ]]; then
-                lsb_release -d 
-            fi    
+                lsb_release -d
+            fi
             echo -e "  \e[41;37;1m NO \e[m $validaVer"
 
             else
 
             ((requiDiver++))
 
-            fi  
+            fi
 
         fi
 
@@ -246,7 +246,7 @@ if [[ $requiDiver -ne 0 ]] ; then
     echo -e "\n  A instalação da Intranet Vindula será cancelada.\n\
     \n   As configurações do servidor não atendem aos\
     \n   requisitos necessários. Para maiores informações\
-    \n   acesse. \e[1m http://www.vindula.com.br\e[m \n" 
+    \n   acesse. \e[1m http://www.vindula.com.br\e[m \n"
 
     exit 0
 
@@ -261,7 +261,7 @@ else
     \n  execução da \e[1mIntranet Vindula.\e[m\n"
 
     confirmarIntOPC
-fi  
+fi
 }
 
 menuPrincipal(){
@@ -279,7 +279,7 @@ if [[ -f /opt/intranet/app/intranet/vindula/bin/instance ]]; then
 
     if [[ -n $status ]]; then
 
-        txtLb=" [1] - Encerrar execução         " 
+        txtLb=" [1] - Encerrar execução         "
         varVl=400
         verificaIP
 
@@ -289,29 +289,29 @@ if [[ -f /opt/intranet/app/intranet/vindula/bin/instance ]]; then
 
             txtLb=" [1] - Iniciar a Intranet        "
             varVl=300
-          
+
         fi
     fi
 
 else
 
     txtT="Instalador do Vindula   "
-    txtLb=" [1] - Instalar a Intranet       " 
+    txtLb=" [1] - Instalar a Intranet       "
     varVl=200
 
     estiInst
- 
+
 fi
 
-estiApro  
+estiApro
 
-baseLayout  
+baseLayout
 
 if [[ $varVl -ne 200 ]]; then
 
     verificadorINSTACIA
 
-fi    
+fi
 
 cursorVI
 
@@ -321,12 +321,12 @@ echo -e "\a"
 
 if [[ $opcD = fgmX ]] ; then
 
-    clear  
+    clear
     i=3
     varRecur=" "
     executorInstancia
-       
-else    
+
+else
 
     if [[ $opcD = 0 ]]; then
 
@@ -346,7 +346,7 @@ else
 
         fi
 
-    fi  
+    fi
 fi
 
 case "$opcE" in
@@ -376,7 +376,7 @@ case "$opcE" in
         status=""
         encerrarInstancia
         exit 0
-        ;; 
+        ;;
 
     * )
         opcInvalida
@@ -396,19 +396,19 @@ apt-get update
 
 apt-get dist-upgrade
 
-add-apt-repository ppa:libreoffice/ppa 
+add-apt-repository ppa:libreoffice/ppa
 
 apt-get -y install mysql-client mysql-server
 
 apt-get -y install curl
 
-local vindulaD=`curl -s https://raw2.github.com/vindula/buildout.python/master/dependencias.txt`
+local vindulaD=`curl -s https://raw.githubusercontent.com/vindula/buildout.python/master/dependencias.txt`
 
-for inst in $vindulaD; do 
+for inst in $vindulaD; do
 
     local installN=$(dpkg -l | grep $inst | wc -l)
 
-    if [[ $installN -eq 0 ]]; then  
+    if [[ $installN -eq 0 ]]; then
 
         echo -ne "`apt-get -y install $inst`\r"
 
@@ -420,7 +420,7 @@ for inst in $vindulaD; do
 
 done
 
-gem install bundle 
+gem install bundle
 
 gem install docsplit -v 0.6.4
 
@@ -441,10 +441,10 @@ easy_install -U distribute
 /opt/core/python/bin/virtualenv-2.7 --no-site-packages /opt/intranet/app/intranet/
 
 if [[ $varPassB = "12.04" ]]; then
-    
+
     local varDown=Vindula-2.0.3LTS.tar.gz
 
-else 
+else
 
     local varDown=Vindula-2.0.3LTS-14.tar.gz
 fi
@@ -486,13 +486,13 @@ checkDB(){
 
     local installN=$(dpkg -l | grep mysql-server | wc -l)
 
-    if [[ $installN -eq 0 ]]; then 
+    if [[ $installN -eq 0 ]]; then
 
         echo -e "\n Seu sistema não está com o MySQL instalado.\n"
         sleep 2
 
     else
-        
+
         if [[ -z $checkDBpass ]]; then
 
             mysql -uvindula -pvindula  -e exit 2> /dev/null
@@ -505,7 +505,7 @@ checkDB(){
 
             local dbA=$(mysql -uvindula -pvindula  -e "SHOW DATABASES LIKE 'vindula_myvindulaDB'")
             local dbB=$(mysql -uvindula -pvindula  -e "SHOW DATABASES LIKE 'vindula_relstorageDB'")
-                     
+
             echo -e "\n"
 
             if [[ -n $dbA ]] && [[ -n $dbB ]] && [[ -z $checkDBpass ]]; then
@@ -540,7 +540,7 @@ checkDB(){
 
                     echo -e "\n\n A Intranet Vindula não está instalada. Utilize o comando \e[1msudo ./Vindula.sh\e[m\n"
 
-                fi   
+                fi
             fi
 
         else
@@ -551,7 +551,7 @@ checkDB(){
             checkDB
 
         fi
-    fi        
+    fi
 
 }
 
@@ -572,7 +572,7 @@ if [[ -n $opcD ]] && [[ -z $varRecur ]]; then
 
             x-www-browser localhost:8080/vindula/&
 
-        else        
+        else
 
             verificadorINSTACIA
             verificaIP
@@ -612,7 +612,7 @@ i=""
 verificadorINSTACIA(){
 
 local conexao=""
-local tempoEspera="" 
+local tempoEspera=""
 
 while [[ $conexao -eq 1 ]] | [[ $tempoEspera -le 10 ]]; do
 
@@ -620,19 +620,19 @@ while [[ $conexao -eq 1 ]] | [[ $tempoEspera -le 10 ]]; do
 
     conexao=$?
 
-    if [[ -n $status ]] && [[ $conexao != 0 ]]; then 
+    if [[ -n $status ]] && [[ $conexao != 0 ]]; then
 
         status=""
         menuPrincipal
         exit 0
 
-    else    
+    else
 
         echo -ne " Aguarde a verificação ... [ $tempoEspera ] \r"
         sleep 0.45
 
         ((tempoEspera++))
-    fi    
+    fi
 
 done
 
@@ -645,7 +645,7 @@ else
 
     local corInfo="41;"
     local mensaInfo="  CONEXÃO ENCERRADA  "
-    
+
 fi
 
  mensaAlert
@@ -660,8 +660,8 @@ baseLayout(){
 echo -e "\n  \e[40m                                    \e[m"
 echo -e "  \e[40m \e[m\e[${coRa}m \e[m\e[40m \e[m\e[${coRaB}${txtSt}m \
 ${txtT} \e[m\e[40m \e[m\e[${coRaB}m  \e[m\e[40m \e[m\e[${coRaB}m \e[m\e[40m \
-\e[m\e[${coRaB}m \e[m\e[40m \e[m" 
-echo -e "  \e[40m \e[m\e[${coRa}m \e[m\e[${txtSd}m${txtLd} \e[m" 
+\e[m\e[${coRaB}m \e[m\e[40m \e[m"
+echo -e "  \e[40m \e[m\e[${coRa}m \e[m\e[${txtSd}m${txtLd} \e[m"
 echo -e "  \e[40m \e[m\e[${coRa}m \e[m\e[${txtSa}m${txtDi} \e[m"
 echo -e "  \e[40m \e[m\e[${coRa}m \e[m\e[${txtSb}m${txtLa} \e[m"
 echo -e "  \e[40m \e[m\e[${coRa}m \e[m\e[${txtSb}m${txtLb} \e[m"
@@ -680,9 +680,9 @@ opcInvalida(){
         txtDi="      Essa opção não exite!      "
         txtLb=" Escolha uma das opções validas  "
         txtLc=" no menu principal.              "
-       
+
             estiExep
-            baseLayout  
+            baseLayout
 
         sleep 2;
 
@@ -725,7 +725,7 @@ estiSair(){
         txtSa="40;37;6"
 
             estiApro
-            baseLayout 
+            baseLayout
             sleep 2
 
     if [[ $varVl -eq 200 ]] && [[ $opcI = [Ss] ]]; then
@@ -739,7 +739,7 @@ estiSair(){
 
         cursorVI
 
-    fi     
+    fi
 
 exit 0
 
@@ -764,19 +764,19 @@ estiPrinci(){
 }
 
 confirmarInt(){
-   
+
      clear
 
         txtT=" Confirmar Instalação !"
         txtLd="        -*- ATENÇÃO -*-          "
         txtDi="   Antes de instalar o Vindula.  "
         txtLa=" Para prosseguir com a instalação,"
-        txtLb=" Deseja instalar as dependencias?"   
+        txtLb=" Deseja instalar as dependencias?"
         txtLc=" [s]- Sim | [n]- Não | [0]- Sair "
 
             txtSc="40;37;1"
             estiInst
-            baseLayout  
+            baseLayout
 
 }
 
@@ -792,8 +792,8 @@ confirmarIntOPC(){
             aguardIni
             estiSair
             ;;
-        n | N )   
-            estiPrinci     
+        n | N )
+            estiPrinci
             menuPrincipal
             ;;
         0)
@@ -821,7 +821,7 @@ aguardIni(){
         txtT="Inicializando o Vindula"
         txtLd="                                 "
         txtLa=" Dentro de instantes, a intranet "
-     
+
       baseLayout
       sleep 2
       opcI=""
@@ -835,10 +835,10 @@ aguardIni(){
 
       baseLayout
       sleep 2
-      instalarVindula 
+      instalarVindula
 
-     fi 
-       
+     fi
+
 }
 
 estiPrinci
@@ -878,7 +878,7 @@ OPCOES:
                 ;;
 
            -I | --instalar )
-              
+
                 confirmarInt
                 confirmarIntOPC
 
@@ -886,9 +886,9 @@ OPCOES:
                 ;;
 
             --statos )
-                
-                status=" "       
-                ;; 
+
+                status=" "
+                ;;
 
             --dados)
 
@@ -896,9 +896,9 @@ OPCOES:
 
                 exit 0
 
-                ;;   
+                ;;
             *)
-                if test -n "$1"; then 
+                if test -n "$1"; then
                     echo -e "\n A opção [ $1 ] é inválida. \n"
                     exit 0
                 fi
@@ -907,4 +907,4 @@ OPCOES:
 
 verificadorProcessoPID
 
-menuPrincipal 
+menuPrincipal
