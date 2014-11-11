@@ -108,17 +108,17 @@ vertificaDor(){
 
     if [[ $versaoAtual = $validador ]]; then
 
-        echo -e "\n  Seu instalador estÃ¡ atualizado\n"
+        echo -e "\n  Seu instalador estão atualizado\n"
 
         sleep 3
 
     else
 
-        echo -e "  \e[41;37;1m $versaoAtual \e[m VersÃ£o atual\n"
+        echo -e "  \e[41;37;1m $versaoAtual \e[m Versão atual\n"
 
             if [[ -n $vVersao ]];then
 
-                echo -e "   Deseja atualizar a versÃ£o \
+                echo -e "   Deseja atualizar a versão \
                     \n        do Instalador?\n"
                 echo -e "     (\e[1ms\e[m) Sim    (\e[1mn\e[m)  NÃ£o\n"
 
@@ -141,7 +141,7 @@ vertificaDor(){
 
                         * )
                             local corInfo="41;"
-                            local mensaInfo="OPÃ‡ÃƒO INVALIDA"
+                            local mensaInfo="OPIÇÃO INVALIDA"
                             mensaAlert
 
                             sleep 2
@@ -209,7 +209,7 @@ atualizaDor(){
     if [[ -n $vVersao ]]; then
 
         local corInfo="42;"
-        local mensaInfo="ATUALIZAÃ‡ÃƒO COMPLETA"
+        local mensaInfo="ATUALIZAÇÃO COMPLETA"
         mensaAlert
         sleep 2
 
@@ -231,10 +231,10 @@ Uso: $(basename "$0") ['OPCOES']
 OPCOES:
 
   -a, --ajuda           - Mostra a ajuda e sai.
-  -V, --versao          - Mostra a versÃ£o do Vindula, habilita atualizaÃ§Ãµes e sai.
+  -V, --versao          - Mostra a versão do Vindula, habilita atualizações e sai.
       --reinstalar      - Reinstalar a Intranet.
       --database        - Reinstala a Base de Dados da Intranet.
-      --status          - Mostra o Statu da execuÃ§Ã£o da intranet.
+      --status          - Mostra o Statu da execução da intranet.
 
 "
  clear
